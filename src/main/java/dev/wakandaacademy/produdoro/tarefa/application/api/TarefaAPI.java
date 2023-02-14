@@ -23,4 +23,8 @@ public interface TarefaAPI {
     @PatchMapping("/{idTarefa}")
     @ResponseStatus(code = HttpStatus.OK)
     void alteraTarefa(@RequestBody @Valid TarefaAlteracaoRequest tarefaAlteracaoRequest, @PathVariable UUID idTarefa);
+
+    @DeleteMapping("/{idTarefa}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deletaTarefa(@PathVariable UUID idTarefa);
 }

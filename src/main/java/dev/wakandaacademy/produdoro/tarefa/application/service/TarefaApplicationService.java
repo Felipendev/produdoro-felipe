@@ -52,4 +52,10 @@ public class TarefaApplicationService implements TarefaService {
         tarefaRepository.salva(tarefa);
         log.info("[finalizar] TarefaApplicationService - alteraTarefa");
     }
+
+    @Override
+    public void deletaTarefa(UUID idTarefa) {
+        log.info("[inicia] TarefaApplicationService - deletaTarefa");
+        log.info("[finaliza] TarefaApplicationService - deletaTarefa");
+    }
 }
