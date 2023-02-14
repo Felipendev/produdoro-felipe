@@ -1,6 +1,7 @@
 package dev.wakandaacademy.produdoro.tarefa.application.service;
 
 import dev.wakandaacademy.produdoro.handler.APIException;
+import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaAlteracaoRequest;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
 import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
@@ -39,5 +40,16 @@ public class TarefaApplicationService implements TarefaService {
         tarefa.pertenceAoUsuario(usuarioPorEmail);
         log.info("[finaliza] TarefaApplicationService - detalhaTarefa");
         return tarefa;
+    }
+
+    @Override
+    public void alteraTarefa(TarefaAlteracaoRequest tarefaAlteracaoRequest, UUID idTarefa) {
+        log.info("[inicia] TarefaApplicationService - alteraTarefa");
+        Tarefa tarefa =
+                tarefaRepository.buscaTarefaPorId(idTarefa).orElseThrow(() ->
+                        APIException.build(HttpStatus.NOT_FOUND, "Tarefa não encontrada!"));
+        tarefa.edita(tarefaAlteracaoRequest);
+        tarefaRepository.salva(tarefa);
+        log.info("[finalizar] TarefaApplicationService - alteraTarefa");
     }
 }
