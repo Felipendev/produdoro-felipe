@@ -56,6 +56,9 @@ public class TarefaApplicationService implements TarefaService {
     @Override
     public void deletaTarefa(UUID idTarefa) {
         log.info("[inicia] TarefaApplicationService - deletaTarefa");
+                tarefaRepository.buscaTarefaPorId(idTarefa).orElseThrow(() ->
+                        APIException.build(HttpStatus.NOT_FOUND, "Tarefa não encontrada!"));
+        tarefaRepository.deletaTarefa(idTarefa);
         log.info("[finaliza] TarefaApplicationService - deletaTarefa");
     }
 }
