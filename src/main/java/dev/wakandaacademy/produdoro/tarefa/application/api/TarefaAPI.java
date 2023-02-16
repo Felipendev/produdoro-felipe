@@ -27,4 +27,6 @@ public interface TarefaAPI {
     @DeleteMapping("/{idTarefa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deletaTarefa(@PathVariable UUID idTarefa);
+
+    
 }
